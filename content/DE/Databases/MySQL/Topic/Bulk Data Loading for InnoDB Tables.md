@@ -1,4 +1,9 @@
-
+---
+title: Bulk Data Loading for InnoDB
+tags:
+  - MySQL
+  - Topic
+---
 ## 1. Tối ưu Session & Transaction (Giảm Disk I/O)
 
 - **Tắt Autocommit:** Gom toàn bộ lệnh nạp vào một transaction lớn thay vì để MySQL ghi đĩa (flush log) sau mỗi dòng chèn.
@@ -59,3 +64,9 @@ ALTER INSTANCE ENABLE INNODB REDO_LOG;
 - **Sử dụng công cụ song song (MySQL Shell):**
     
     - Dùng `util.importTable()` hoặc `util.loadDump()` trong **MySQL Shell** để chia nhỏ file dữ liệu và nạp đa luồng (multi-threaded parallel load), cho tốc độ vượt trội so với import qua client thông thường.
+
+Liên quan:
+- [[Buffer Pool]]
+- [[Glossary]]
+- [[Log]]
+- [[Indexes]]

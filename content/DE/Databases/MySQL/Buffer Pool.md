@@ -17,6 +17,32 @@ Thuật toán quản lí là LRU (Least Recently Used). Khi cần thêm chỗ tr
 
 Thuật toán giữ lại các trang được sử dụng thường xuyên trong danh sách con mới. Danh sách con cũ chứa các trang được sử dụng ít thường xuyên hơn; những trang này là đối tượng có thể bị loại bỏ.
 
+## Change Buffer
+
+Là cấu trúc dữ liệu lưu trữ tạm các thay đổi (INSERT, UPDATE, DELETE) đối với các trang **Secondary Index** khi trang đó **chưa nằm trong Buffer Pool**.
+
+![[Pasted image 20261024020545.png]]
+
+**Mục đích duy nhất:** **Loại bỏ Random Disk I/O**.
+
+- Cập nhật Secondary Index thường nằm rải rác trên đĩa. Thay vì phải đọc ngay từng trang ngẫu nhiên từ đĩa lên RAM để sửa, InnoDB lưu tạm thao tác vào Change Buffer.
+
+**Vị trí lưu trữ:**
+
+- **Trong RAM:** Chiếm một phần bộ nhớ của Buffer Pool.
+    
+- **Trên đĩa:** Nằm trong System Tablespace (được lưu bền vững khi server tắt).
+
+**Chỉ áp dụng cho Secondary Index:** Không dùng cho Clustered Index (Primary Key).
+    
+**Không hỗ trợ:**
+
+- Secondary Index có chứa cột giảm dần (**Descending Index**).
+        
+- Bảng có Primary Key chứa cột giảm dần.
+        
+- Secondary Index duy nhất (**UNIQUE**): Bắt buộc phải đọc đĩa ngay để kiểm tra trùng lặp (trừ khi đã bật `unique_checks=0`).
+
 ## Doublewrite Buffer
 
 **Doublewrite Buffer (DWB)** dùng để **chống rách trang dữ liệu (partial/torn page)** khi sập nguồn hoặc crash đột ngột.
@@ -26,3 +52,6 @@ Thuật toán giữ lại các trang được sử dụng thường xuyên trong
 - **Cách giải quyết:** Trước khi ghi vào file dữ liệu chính, InnoDB ghi nguyên trang 16 KB vào vùng đệm **Doublewrite Buffer** trước.
     
 - **Khi crash:** Nếu trang ở file chính bị rách, InnoDB lấy bản sao nguyên vẹn trong DWB đè lại, sau đó mới dùng Redo Log để khôi phục tiếp dữ liệu mới nhất.
+
+Liên quan:
+- [[Glossary]]
