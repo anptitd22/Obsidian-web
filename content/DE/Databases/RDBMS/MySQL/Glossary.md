@@ -120,8 +120,6 @@ See Also [denormalized](https://dev.mysql.com/doc/refman/9.7/en/glossary.html#g
 
 Vùng nhớ hoặc vùng đĩa được sử dụng để lưu trữ tạm thời. Dữ liệu được đệm trong bộ nhớ để có thể ghi vào đĩa một cách hiệu quả, với một vài thao tác I/O lớn thay vì nhiều thao tác nhỏ. Dữ liệu được đệm trên đĩa để tăng độ tin cậy, sao cho có thể khôi phục ngay cả khi xảy ra sự cố hoặc lỗi khác vào thời điểm tồi tệ nhất. Các loại bộ đệm chính được InnoDB sử dụng là buffer pool, doublewrite buffer và change buffer.
 
-Nguồn: [[MySQL  MySQL 9.7 Reference Manual  MySQL Glossary]]
-
 ### Shared lock
 
 Một loại khóa cho phép các giao dịch khác đọc đối tượng bị khóa và cũng có thể giành được các shared locks khác trên đối tượng đó, nhưng không được phép ghi vào đối tượng. Ngược lại với khóa độc quyền.

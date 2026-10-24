@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 configuration:
-  pageTitle: Quartz 5
+  pageTitle: Tran Duc An
   pageTitleSuffix: ""
   enableSPA: true
   enablePopovers: true
@@ -56,6 +56,35 @@ plugins:
     layout:
       position: right
       priority: 10
+    options:
+      localGraph:
+        drag: true
+        zoom: true
+        depth: 1
+        scale: 1.1
+        repelForce: 0.5
+        centerForce: 0.3
+        linkDistance: 30
+        fontSize: 0.6
+        opacityScale: 1
+        removeTags: []
+        showTags: true
+        focusOnHover: false
+        enableRadial: false
+      globalGraph:
+        drag: true
+        zoom: true
+        depth: -1
+        scale: 0.9
+        repelForce: 0.5
+        centerForce: 0.3
+        linkDistance: 30
+        fontSize: 0.6
+        opacityScale: 1
+        removeTags: []
+        showTags: true
+        focusOnHover: true
+        enableRadial: true
   - source: "@quartz-community/created-modified-date"
     enabled: true
     options:
@@ -151,6 +180,11 @@ plugins:
       position: afterBody
       priority: 50
       display: all
+    options:
+      maxTabs: 8
+      mobileBreakpoint: 800
+      showSpines: true
+      animateTransitions: true
   - source: "@quartz-community/alias-redirects"
     enabled: true
   - source: "@quartz-community/content-index"
@@ -172,18 +206,14 @@ plugins:
     enabled: true
   - source: "@quartz-community/tag-page"
     enabled: true
-  - source: "@quartz-community/explorer"
-    enabled: true
-    layout:
-      position: left
-      priority: 50
-  - source: "@quartz-community/graph"
-    enabled: true
-    layout:
-      position: right
-      priority: 10
   - source: "@quartz-community/search"
     enabled: true
+    options:
+      enablePreview: true
+      fieldPriority:
+        - title
+        - content
+        - tags
     layout:
       position: left
       priority: 20
@@ -233,6 +263,11 @@ plugins:
       position: beforeBody
       priority: 5
       condition: not-index
+    options:
+      spacerSymbol: "❯"
+      rootName: Home
+      resolveFrontmatterTitle: true
+      showCurrentPage: true
   - source: "@quartz-community/comments"
     enabled: false
     options:
