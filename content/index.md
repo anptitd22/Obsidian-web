@@ -71,7 +71,7 @@ Architected an enterprise-grade data lakehouse platform with ACID compliance, cr
 * **Orchestration:** Airflow, CronJob
 * **Data Visualization & Monitoring:** Superset, Grafana
 * **Data Governance & Authorization:** OpenMetadata, Open Policy Agent
-* **Databases:** MySQL, PostgreSQL, MongoDB
+* **Databases & Cache:** MySQL, PostgreSQL, MongoDB, Redis
 * **Data Crawling:** Selenium, Playwright
 * **Cloud:** Google Cloud Platform
 * **Data Modeling:** Star Schema
