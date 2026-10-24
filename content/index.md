@@ -4,7 +4,7 @@ title: Welcome to My Channel
 
 # Tran Duc An
 
-[GitHub](https://github.com/anptitd22) | [LinkedIn](https://www.linkedin.com/in/tran-duc-an/) | [Facebook](https://www.facebook.com/an.badaoc/) | [tu123098b@gmail.com](mailto:tu123098b@gmail.com) | [+84.97.120.9142](tel:+84971209142)
+[GitHub](https://github.com/anptitd22) | [LinkedIn](https://www.linkedin.com/in/tran-duc-an/) | [Facebook](https://www.facebook.com/an.badaoc/) | [tu123098b@gmail.com](mailto:tu123098b@gmail.com)
 
 ---
 
