@@ -3,6 +3,7 @@ title: Bulk Data Loading for InnoDB
 tags:
   - MySQL
   - Topic
+  - RDBMS
 ---
 ## 1. Tối ưu Session & Transaction (Giảm Disk I/O)
 

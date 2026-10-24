@@ -3,9 +3,8 @@ title: Isolation levels
 tags:
   - MySQL
   - PostgreSQL
-  - Topic
+  - RDBMS
 ---
-
 ## Dirty Read
 
 T1 write bảng vào bảng A chưa commit, T2 read bảng A sẽ thấy được cả dữ liệu của T1 nhưng nếu T1 rollback thì dữ liệu trên bảng sẽ mất nhưng T2 vẫn read dữ liệu đó

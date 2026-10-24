@@ -3,6 +3,7 @@ title: Statement Not Safe
 tags:
   - MySQL
   - Topic
+  - RDBMS
 ---
 ## Use Limit without ORDER BY
 

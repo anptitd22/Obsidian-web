@@ -4,6 +4,7 @@ tags:
   - MySQL
   - Topic
   - InnoDB
+  - RDBMS
 ---
 | **Isolation Level**                           | **Dirty Read** | **Non-repeatable Read** | **Phantom Read** | **Cơ chế xử lý chính**                                                                                                                   |
 | --------------------------------------------- | -------------- | ----------------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
@@ -13,4 +14,5 @@ tags:
 | **SERIALIZABLE**                              | Không          | Không                   | Không            | Tự động chuyển mọi câu lệnh `SELECT` thuần túy thành `SELECT ... FOR SHARE` nếu `autocommit = 0`. Khóa hoàn toàn các giao dịch xung đột. |
 
 Liên quan:
-- [[DE/Databases/Topic/Isolation levels|Isolation levels]]
+- [[DE/Databases/RDBMS/Isolation levels|Isolation levels]]
+- [[Log]]

@@ -21,7 +21,7 @@ Lưu lại các sự kiện làm thay đổi dữ liệu hoặc cấu trúc DB (
 
 - **3 định dạng ghi (Logging Formats):**
     
-    - `ROW`: Ghi chi tiết từng hàng bị đổi (chính xác nhất, an toàn cho replicate).
+    - `ROW`: (Mặc định) Ghi chi tiết từng hàng bị đổi (chính xác nhất, an toàn cho replicate).
         
     - `STATEMENT`: Ghi lại nguyên văn câu lệnh SQL.
         
