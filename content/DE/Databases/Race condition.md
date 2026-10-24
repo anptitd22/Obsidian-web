@@ -1,0 +1,1 @@
+Race condition: (tình trạng chạy đua) xảy ra khi nhiều luồng (threads) hoặc tiến trình truy cập và thao tác đồng thời lên một tài nguyên (dữ liệu chia sẻ) mà không được đồng bộ hóa, khiến kết quả cuối cùng phụ thuộc vào thứ tự thực thi ngẫu nhiên của các luồng, dẫn đến lỗi, dữ liệu không chính xác hoặc hành vi không mong muốn

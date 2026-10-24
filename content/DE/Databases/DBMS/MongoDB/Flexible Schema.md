@@ -28,7 +28,7 @@ Giả sử bạn có một tập hợp tên là `products` (sản phẩm). Cửa
 
 Dưới đây là lệnh tạo collection `products` có quy tắc kiểm tra chi tiết:
 
-```
+```sql
 db.createCollection("products", {
    validator: {
       $jsonSchema: {
@@ -71,7 +71,7 @@ Sau khi tạo Schema Validation ở trên, hãy xem MongoDB xử lý các câu l
 
 MongoDB nhìn vào `category: "clothing"` -> Kích hoạt quy tắc 1 -> Kiểm tra thấy có đủ `sizes` và `colors`.
 
-```
+```sql
 db.products.insertOne({
   "name": "Áo thun Polo",
   "price": 200000,
@@ -86,7 +86,7 @@ db.products.insertOne({
 
 MongoDB nhìn vào `category: "electronics"` -> Kích hoạt quy tắc 2 -> Phát hiện **thiếu trường `storage`**.
 
-```
+```sql
 db.products.insertOne({
   "name": "iPhone 15 Pro",
   "price": 25000000,
@@ -101,7 +101,7 @@ db.products.insertOne({
 
 MongoDB nhìn vào `category: "books"` -> Kích hoạt quy tắc 3 -> Kiểm tra thấy trường `pages` bị sai kiểu dữ liệu (truyền chuỗi `"320 trang"` thay vì số `320`).
 
-```
+```sql
 db.products.insertOne({
   "name": "Đắc Nhân Tâm",
   "price": 90000,

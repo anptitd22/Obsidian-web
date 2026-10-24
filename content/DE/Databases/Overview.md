@@ -8,4 +8,4 @@ Mỗi một kiểu thiết kế sẽ phù hợp cho từng bài toán khác nhau
 
 - Bài toán về bán hàng, giao dịch, lưu trữ thông tin: cần được thiết kế normalize để tránh dư thừa dữ liệu đổi lại cần tạo nhiều bảng, tốc độ chậm khi sử dụng cần join rất nhiều để lấy đầy đủ thông tin nên RDBMS phù hợp hơn do nó có nhiều thuật toán tối ưu JOIN và Foreign Keys đảm bảo tính nhất quán của dữ liệu.
 
-- Bài toán về trò chuyện, vector: cần tốc độ nhanh, dữ liệu được flatern hạn chế JOIN, schema có cấu trúc phức tạp lồng nhau thì phù hợp với DBMS hơn.
+- Bài toán về trò chuyện, vector: cần tốc độ nhanh, dữ liệu được flatern hạn chế JOIN, schema có cấu trúc phức tạp lồng nhau thì phù hợp với DBMS hơn do các document được nhúng (embedding) tăng tốc độ truy vấn trực tiếp.

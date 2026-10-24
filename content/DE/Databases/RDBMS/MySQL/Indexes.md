@@ -40,7 +40,6 @@ tags:
 - Việc thay đổi dữ liệu (insert, update) sẽ tác động lên cả Primary Key lẫn Secondary Key
 
 ---
-
 ## B-tree
 
 B-tree có thể được sử dụng để so sánh cột trong các biểu thức sử dụng các toán tử =, >, >=, <, <= hoặc BETWEEN. Index cũng có thể được sử dụng cho các phép so sánh LIKE nếu đối số của LIKE là một chuỗi hằng số không bắt đầu bằng ký tự đại diện (%). Ví dụ, các câu lệnh SELECT sau sử dụng chỉ mục:
@@ -105,3 +104,24 @@ Các bước tìm kiếm:
 
 >[!note]
 >Việc chọn index theo kiểu BTREE hay HASH ngoài yếu tố về mục đích sử dụng index thì nó còn phụ thuộc vào mức độ hỗ trợ của Storage Engine. Ví dụ MyISAM, InnoDB hay Archive chỉ hỗ trợ Btree, trong khi Memory lại hỗ trợ cho cả 2.
+
+---
+
+### Khi mà select 2 cột được đánh 2 index riêng biệt thì mysql sẽ chọn index nào ?
+
+MySQL thường sử dụng index có số lượng bản ghi nhỏ nhất (index có tính chọn lọc cao nhất).
+Ví dụ:
+- Có index(age) và index(height)
+```sql
+  Select * from table where age > 50 and height > 160 
+```
+- Nếu index(age) > 50 có 500k bản ghi và index(height) > 160 có 300k bản ghi
+- Sẽ chọn index(height)
+
+Thông thường khi một hệ thống lớn thường dễ đến việc sử dụng sai index do cơ chế ước lượng chi phí giữa I/O sequential và I/O random (index) -> Mình phải tự chọn index bằng câu lệnh `FORCE INDEX()`
+
+```sql
+Select * from table force index(age) where age > 50 and height > 160 
+```
+
+

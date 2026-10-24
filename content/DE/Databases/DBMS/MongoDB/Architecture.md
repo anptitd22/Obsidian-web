@@ -135,7 +135,6 @@ Bao gồm các hệ thống con cốt lõi:
 
 - **Cấu trúc:** Tách biệt rõ ràng thành 3 lớp độc lập:
     
-
 $$\text{Client (Presentation Layer)} \iff \text{Application Server (Business Logic)} \iff \text{Database Server (Data Layer)}$$
 
 - **Đặc tính & Lợi thế cốt lõi:**
