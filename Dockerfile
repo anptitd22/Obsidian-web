@@ -12,6 +12,9 @@ COPY quartz.lock.json* .
 RUN npm install; npx quartz plugin install
 
 FROM node:22-slim
+
+RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /usr/src/app
 COPY --from=builder /usr/src/app/ /usr/src/app/
 COPY . .
