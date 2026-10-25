@@ -186,7 +186,7 @@ plugins:
       showSpines: true
       animateTransitions: true
   - source: "@quartz-community/alias-redirects"
-    enabled: true
+    enabled: false
   - source: "@quartz-community/content-index"
     enabled: true
     options:
