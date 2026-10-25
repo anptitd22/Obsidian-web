@@ -1,0 +1,1 @@
+Xử lí dữ liệu trên nhiều tiến trình python có thể không bị giới hạn bởi GIL

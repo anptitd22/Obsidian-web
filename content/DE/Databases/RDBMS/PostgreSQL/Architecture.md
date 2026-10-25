@@ -95,23 +95,3 @@ Vùng RAM được cấp phát khi khởi động instance để tất cả ti�
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Ưu điểm**   | • Chuẩn ACID nghiêm ngặt, độ tin cậy và khả năng chịu lỗi cao.<br><br>• Mô hình Process-per-connection giúp cách ly lỗi tuyệt đối (lỗi crash của một backend không làm sập instance).<br><br>• Hỗ trợ mở rộng kiểu dữ liệu mạnh mẽ (JSONB, GIS, Custom Extensions).<br><br>• Hệ sinh thái nguồn mở và tài liệu phong phú. |
 | **Hạn chế**   | • Mô hình Process tốn RAM và chi phí Context Switch cao hơn Thread khi có hàng nghìn kết nối đồng thời $\rightarrow$ cần dùng Connection Pooler như **PgBouncer**.<br><br>• Dead tuples sinh ra bởi MVCC đòi hỏi quy trình bảo trì (Vacuum) liên tục để tránh bloat bảng và chỉ mục.                                      |
-
-## Note
-
-Là Heap Table
-
-Dữ liệu được lưu ngẫu nhiên trên disk
-
-- Khi INSERT, dữ liệu được thêm vào chỗ trống bất kì trên disk
-
-- Khi DELETE, UPDATE, dữ liệu sẽ chưa được xóa ngay mà phải chờ được dọn dẹp (VACUUM, ...) 
-
-Dữ liệu khi được ghi, cập nhật rất nhưng đổi lại khi tìm kiếm mà không có index thì rất chậm
-
-- Khi tìm kiếm dữ liệu, postgreSQL phải tìm kiếm toàn bảng khi không có index
-
-Không hỗ trợ nhiều storage engine
-
-Hoạt động dựa trên cơ chế MVCC mạnh mẽ, cung cấp cho các bản ghi một ctid
-
-Mỗi 1 bảng (không phân vùng) bao gồm 1 file data và các file index riêng
