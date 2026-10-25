@@ -1,0 +1,1 @@
+**Cơ chế:** Khi khởi tạo `SparkContext`, driver phía Python sẽ kích hoạt một JVM process và sử dụng thư viện **Py4J**. Py4J mở một `GatewayServer` lắng nghe trên cổng TCP cục bộ này để mã Python có thể gọi trực tiếp các phương thức, lớp và đối tượng trong Scala/Java.
