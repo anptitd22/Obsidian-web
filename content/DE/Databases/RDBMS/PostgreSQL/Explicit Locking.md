@@ -38,7 +38,7 @@
 - **Mô tả:** Mặc dù khóa hàng ghi trực tiếp xuống đĩa, nhưng cả khóa bảng thông thường và khóa tư vấn (advisory locks) đều được lưu trong một vùng bộ nhớ dùng chung (shared memory pool). Kích thước vùng nhớ này được cấu hình tĩnh thông qua thông số `max_locks_per_transaction` và `max_connections`.
 - **Vấn đề:** Nếu ứng dụng tạo ra quá nhiều khóa (vài chục nghìn đến hàng trăm nghìn khóa) làm cạn kiệt vùng nhớ này, PostgreSQL sẽ từ chối cấp phát thêm bất kỳ khóa nào mới, gây gián đoạn toàn bộ hệ thống.
 
-**Khóa treo (Dangling Locks) với khóa tư vấn**
+**Khóa treo (Dangling Locks) với Advisory Locks**
 
 - **Mô tả:** Khi kết hợp khóa tư vấn trong các câu lệnh SQL có mệnh đề sắp xếp (`ORDER BY`) hoặc giới hạn (`LIMIT`), thứ tự đánh giá biểu thức của SQL có thể tạo ra lỗi logic.
 - **Vấn đề:** Mệnh đề `LIMIT` không được đảm bảo sẽ chạy trước hàm cấp khóa. Ứng dụng có thể vô tình lấy ra và khóa rất nhiều bản ghi ngoài ý muốn, sau đó không thể tự động nhả các khóa này (để lại các khóa treo lơ lửng cho đến khi hết phiên).

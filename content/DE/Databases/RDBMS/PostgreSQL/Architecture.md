@@ -104,7 +104,7 @@ Dữ liệu được lưu ngẫu nhiên trên disk
 
 - Khi INSERT, dữ liệu được thêm vào chỗ trống bất kì trên disk
 
-- Khi DELETE, dữ liệu sẽ chưa được xóa ngay mà phải chờ được dọn dẹp (VACUUM, ...) 
+- Khi DELETE, UPDATE, dữ liệu sẽ chưa được xóa ngay mà phải chờ được dọn dẹp (VACUUM, ...) 
 
 Dữ liệu khi được ghi, cập nhật rất nhưng đổi lại khi tìm kiếm mà không có index thì rất chậm
 
@@ -112,6 +112,6 @@ Dữ liệu khi được ghi, cập nhật rất nhưng đổi lại khi tìm ki
 
 Không hỗ trợ nhiều storage engine
 
-Hoạt động dựa trên cơ chế MVCC mạnh mẽ
+Hoạt động dựa trên cơ chế MVCC mạnh mẽ, cung cấp cho các bản ghi một ctid
 
 Mỗi 1 bảng (không phân vùng) bao gồm 1 file data và các file index riêng
