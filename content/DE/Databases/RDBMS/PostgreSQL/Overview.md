@@ -24,3 +24,5 @@ Mỗi 1 bảng (không phân vùng) bao gồm 1 file data và các file index ri
 Các sự kiện thay đổi dữ liệu cũng như cơ chế write ahead log được gọi là [[WAL]]
 
 Cung cấp các [[DE/Databases/RDBMS/PostgreSQL/Isolation levels|Isolation levels]] 
+
+Cung cấp các [[DE/Databases/RDBMS/PostgreSQL/Indexes|Indexes]]

@@ -10,7 +10,7 @@ Cơ chế được trình thông dịch [[CPython]] sử dụng để đảm b�
 
 - Đơn giản, thận thiện với người dùng như cách mà triết lí nó mang lại
 
-Có các thư viện như numpy, ... được viết trên ngôn ngữ C/C++ hay các tác vụ I/O bound không bị giới hạn bởi GIL.
+Có các thư viện như numpy, ... được viết trên ngôn ngữ C/C++ và gọi API C của Python hay các tác vụ I/O bound không bị giới hạn bởi GIL.
 
 Về bản chất multi-processing có thể giúp tăng tốc xử lí song song nhờ tạo ra nhiều tiến trình python (mỗi tiến trình có 1 GIL) nhưng đổi lại tốn rất nhiều tài nguyên thậm chí có thể chậm hơn là xử lí trên 1 tiến trình.
 

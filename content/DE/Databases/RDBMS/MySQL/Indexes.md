@@ -105,6 +105,41 @@ Các bước tìm kiếm:
 >[!note]
 >Việc chọn index theo kiểu BTREE hay HASH ngoài yếu tố về mục đích sử dụng index thì nó còn phụ thuộc vào mức độ hỗ trợ của Storage Engine. Ví dụ MyISAM, InnoDB hay Archive chỉ hỗ trợ Btree, trong khi Memory lại hỗ trợ cho cả 2.
 
+## Full-Text Index
+
+- **Storage Engine:** InnoDB (từ MySQL 5.6+) và MyISAM.
+    
+- **Cơ chế:** Sử dụng kỹ thuật chỉ mục đảo ngược (Inverted Index) tương tự như GIN của Postgres hoặc Elasticsearch, chia tách chuỗi văn bản thành các từ (tokens/words) và loại bỏ stop-words.
+    
+- **Cú pháp truy vấn:** Sử dụng `MATCH(...) AGAINST(...)`.
+    
+- **Trường hợp sử dụng:** Tìm kiếm từ khóa, cụm từ trong các trường văn bản dài (`CHAR`, `VARCHAR`, `TEXT`), hỗ trợ chế độ Natural Language Search và Boolean Mode (`+word`, `-word`).
+
+```sql
+CREATE FULLTEXT INDEX idx_content ON articles(title, body);
+-- Truy vấn:
+SELECT * FROM articles WHERE MATCH(title, body) AGAINST('+database -nosql' IN BOOLEAN MODE);
+```
+
+## Spatial Index (R-Tree)
+
+- **Storage Engine:** InnoDB (từ MySQL 5.7+) và MyISAM.
+    
+- **Cơ chế:** Dựa trên cấu trúc cây không gian **R-Tree** (tương tự như GiST trên PostGIS của Postgres).
+    
+- **Kiểu dữ liệu:** Các kiểu dữ liệu hình học OpenGIS như `POINT`, `LINESTRING`, `POLYGON`, `GEOMETRY`. Cột phải được định nghĩa `NOT NULL`.
+    
+- **Trường hợp sử dụng:** Tính toán khoảng cách tọa độ GPS, kiểm tra điểm nằm trong đa giác (`ST_Contains`, `ST_Within`).
+
+```sql
+CREATE TABLE locations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    geo POINT NOT NULL,
+    SPATIAL INDEX(geo)
+) ENGINE=InnoDB;
+```
+
 ---
 
 ### Khi mà select 2 cột được đánh 2 index riêng biệt thì mysql sẽ chọn index nào ?
@@ -112,9 +147,11 @@ Các bước tìm kiếm:
 MySQL thường sử dụng index có số lượng bản ghi nhỏ nhất (index có tính chọn lọc cao nhất).
 Ví dụ:
 - Có index(age) và index(height)
+
 ```sql
   Select * from table where age > 50 and height > 160 
 ```
+
 - Nếu index(age) > 50 có 500k bản ghi và index(height) > 160 có 300k bản ghi
 - Sẽ chọn index(height)
 

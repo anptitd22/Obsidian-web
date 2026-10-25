@@ -70,4 +70,4 @@ Liên quan:
 - [[Buffer Pool]]
 - [[Glossary]]
 - [[Log]]
-- [[Indexes]]
+- [[DE/Databases/RDBMS/MySQL/Indexes]]

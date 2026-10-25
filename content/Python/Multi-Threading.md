@@ -1,1 +1,1 @@
-Xử lí dữ liệu trên nhiều luồng nhưng trên python thì được dùng cho [[Executor]] hay các tác vụ I/O bound do bị giới hạn bởi GIL
+Multi-threading trên python thường được dùng cho [[Executor]] hay các tác vụ I/O bound do bị giới hạn bởi GIL nên hạn chế các tác vụ CPU bound

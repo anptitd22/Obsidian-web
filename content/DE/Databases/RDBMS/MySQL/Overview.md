@@ -2,7 +2,7 @@ Dữ liệu luôn được sắp xếp tổ chức theo cây B-tree giúp truy v
 
 Có [[DE/Databases/RDBMS/MySQL/Architecture|Architecture]]
 
-Cung cấp [[Indexes]]
+Cung cấp [[DE/Databases/RDBMS/MySQL/Indexes]]
 
 Cung cấp nhiều cơ chế [[Backup & Recovery]]
 
