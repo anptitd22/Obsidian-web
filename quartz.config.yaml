@@ -7,7 +7,7 @@ configuration:
   analytics:
     provider: plausible
   locale: en-US
-  baseUrl: antd
+  baseUrl: amazing-bunny-958d0c.netlify.app
   ignorePatterns:
     - private
     - templates
