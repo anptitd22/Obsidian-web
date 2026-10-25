@@ -2,7 +2,7 @@
 configuration:
   pageTitle: Tran Duc An
   pageTitleSuffix: ""
-  enableSPA: false
+  enableSPA: true
   enablePopovers: true
   analytics:
     provider: plausible
