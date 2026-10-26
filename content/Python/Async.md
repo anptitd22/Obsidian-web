@@ -69,7 +69,7 @@ loudmouth_penguin(magic_number=3)
 ```
 
 >[!note]
->Các thuật ngữ “coroutine function” và “coroutine object” thường bị nhầm lẫn với nhau thành coroutine. Điều đó có thể gây nhầm lẫn! coroutine function là đại diện cho phần logic hàm async def tĩnh còn coroutine object là khi hàm async được thực thi. Nói cách khác coroutine function chạy sẽ tạo ra coroutine ọbject. Trong bài viết này, coroutine được định nghĩa là coroutine object
+>Các thuật ngữ “coroutine function” và “coroutine object” thường bị nhầm lẫn với nhau thành coroutine. Điều đó có thể gây nhầm lẫn! coroutine function là đại diện cho hàm async def tĩnh còn coroutine object là khi hàm async được thực thi. Nói cách khác coroutine function chạy sẽ tạo ra coroutine ọbject. Trong bài viết này, coroutine được định nghĩa là coroutine object
 
 Coroutine đại diện cho phần thân hoặc logic của hàm. Một coroutine phải được khởi tạo một cách rõ ràng; nói cách khác, chỉ tạo ra coroutine thôi thì chưa đủ để khởi động nó. Đặc biệt, coroutine có thể được tạm dừng và tiếp tục tại nhiều điểm khác nhau trong phần thân của hàm. Khả năng tạm dừng và tiếp tục đó chính là điều cho phép hoạt động bất đồng bộ!
 

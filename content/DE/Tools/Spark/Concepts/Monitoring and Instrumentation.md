@@ -1,0 +1,1 @@
+Có nhiều cách để giám sát các Spark applications: web UIs, metrics, and external instrumentation.

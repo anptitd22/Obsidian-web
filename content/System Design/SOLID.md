@@ -11,11 +11,11 @@ SOLID là từ viết tắt của:
 
 Nguyên tắc đầu tiên trong SOLID là "Single Responsibility Principle". Theo nguyên tắc này, một lớp chỉ nên chịu trách nhiệm về một nhiệm vụ cụ thể nào đó. Nếu lớp của bạn đang thực hiện nhiều nhiệm vụ, nó nên được tách thành nhiều lớp khác nhau, mỗi lớp chỉ thực hiện một nhiệm vụ.
 
-![alt][SRP_1.png]
+![[SRP_1.png]]
 
 Để tuân thủ SRP, chúng ta tách chức năng lưu vào cơ sở dữ liệu ra khỏi lớp Book:
 
-![alt][SRP_2.png]
+![[SRP_2.png]]
 
 Chúng ta có một lớp Book có nhiệm vụ quản lý thông tin về sách và một phương thức để in sách. Nếu chúng ta muốn thêm chức năng lưu thông tin sách vào cơ sở dữ liệu, chúng ta không nên thêm phương thức đó vào lớp Book. Thay vào đó, chúng ta nên tạo một lớp mới có trách nhiệm là lưu thông tin sách.
 
@@ -25,11 +25,11 @@ Nguyên tắc thứ hai, "Open-Closed Principle", cho rằng phần mềm (lớp
 
 Ví dụ trái với OCP
 
-![alt][OCP_1.png]
+![[OCP_1.png]]
 
 Để tuân thủ OCP, chúng ta nên tạo ra một lớp cho mỗi hình dạng:
 
-![alt][OCP_2.png]
+![[OCP_2.png]]
 
 Bạn có một lớp Shape và một phương thức draw để vẽ hình. Nếu bạn muốn thêm chức năng vẽ một hình khác, bạn nên tạo một lớp mới kế thừa từ Shape, chứ không nên sửa đổi lớp Shape và phương thức draw hiện tại.
 
@@ -39,11 +39,11 @@ Nguyên tắc thứ ba, "Liskov Substitution Principle", nói rằng lớp con p
 
 Ví dụ vi phạm LSP
 
-![alt][LSP_1.png]
+![[LSP_1.png]]
 
 Để tuân thủ LSP, chúng ta nên tạo ra các lớp phù hợp:
 
-![alt][LSP_2.png]
+![LSP_2.png]]
 
 Nếu Bird là một lớp cơ sở và Penguin là lớp dẫn xuất từ Bird, thì mọi nơi bạn sử dụng Bird cũng nên có thể sử dụng Penguin mà không gây ra lỗi hoặc hành vi không mong đợi.
 
@@ -53,11 +53,11 @@ Nguyên tắc thứ tư, "Interface Segregation Principle", khẳng định rằ
 
 Ví dụ trái với ISP
 
-![alt][ISP_1.png]
+![[ISP_1.png]]
 
 Để tuân thủ ISP, chúng ta tách interface “Worker” thành hai interface:
 
-![alt][ISP_2.png]
+![ISP_2.png]]
 
 ## 5. Dependency Inversion Principle (DIP)
 
@@ -65,11 +65,11 @@ Cuối cùng, nguyên tắc "Dependency Inversion Principle" khuyến nghị ch�
 
 Ví dụ vi phạm DIP:
 
-![alt][DIP_1.png]
+![[DIP_1.png]]
 
 Để tuân thủ DIP, chúng ta cần phụ thuộc vào các abstraction:
 
-![alt][DIP_2.png]
+![[DIP_2.png]]
 
 >[!warning]
 >Điều quan trọng nhất khi áp dụng SOLID là không cần phải nguyên tắc áp dụng mọi lúc mọi nơi. Đôi khi, việc đơn giản hóa mã nguồn có thể mang lại lợi ích hơn so với việc tuân thủ một cách mù quáng tất cả các nguyên tắc. Nhưng nếu bạn muốn xây dựng một ứng dụng lớn, phức tạp, thì việc hiểu và áp dụng đúng SOLID sẽ là cần thiết.
