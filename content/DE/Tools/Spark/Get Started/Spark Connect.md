@@ -19,8 +19,11 @@
 ## Lợi ích vận hành (Operational Benefits)
 
 - **Tính ổn định (Stability)**: Ứng dụng quá tải bộ nhớ chỉ ảnh hưởng đến tiến trình của chính nó; các thư viện phụ thuộc ở phía client không gây xung đột với Spark Driver.
+
 - **Nâng cấp độc lập (Upgradability)**: Spark Driver có thể nâng cấp độc lập (vá lỗi, tối ưu hiệu năng) mà không bắt buộc ứng dụng phía client phải sửa đổi hay biên dịch lại.
+
 - **Khả năng quan sát & Gỡ lỗi (Debuggability & Observability)**: Hỗ trợ gỡ lỗi tương tác (interactive debugging) trực tiếp từ IDE và theo dõi thông qua các thư viện logging/metrics bản địa.
+
 - **Xác thực (Authentication)**: Không tích hợp sẵn logic xác thực nội bộ nhưng giao diện gRPC HTTP/2 tương thích tốt với các proxy xác thực bên ngoài.
 
 ## Hỗ trợ API (Supported APIs)
@@ -30,7 +33,7 @@
     - **Scala**: Hỗ trợ các API `Dataset`, `functions`, `Column`, `Catalog`, `KeyValueGroupedDataset` và hầu hết Streaming API (`DataStreamReader`, `DataStreamWriter`, v.v.).
 
 - **Không hỗ trợ / Đã lỗi thời (Deprecated)**:
-    - Các API cấp thấp như **SparkContext** và **RDD** **không được hỗ trợ** trong PySpark và bị đánh dấu **deprecated** trong Scala khi dùng Spark Connect.
+    - Các API cấp thấp như [[SparkContext]] và **RDD** **không được hỗ trợ** trong PySpark và bị đánh dấu **deprecated** trong Scala khi dùng Spark Connect.
 
 ## Cấu hình & Sử dụng cơ bản (Usage & Setup)
 

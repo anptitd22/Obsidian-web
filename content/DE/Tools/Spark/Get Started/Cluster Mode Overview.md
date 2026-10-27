@@ -1,8 +1,8 @@
 ## Components
 
-Các Spark application chạy như các tập hợp tiến trình độc lập trên một cluster, được điều phối bởi SparkContext object trong program chính của bạn (được gọi là _driver program_).
+Các Spark application chạy như các tập hợp tiến trình độc lập trên một cluster, được điều phối bởi [[SparkContext]] object trong program chính của bạn (được gọi là _driver program_).
 
-Cụ thể, để chạy trên một cluster, SparkContext có thể kết nối với nhiều loại _cluster managers_ (hoặc standalone cluster manager của Spark, YARN hoặc Kubernetes), các cluster managers này sẽ phân bổ tài nguyên cho các applications. Sau khi kết nối, Spark sẽ lấy các _executors_ trên các nodes trong cluster, đó là các tiến trình chạy các computations và lưu trữ dữ liệu cho application của bạn. Tiếp theo, nó gửi application code của bạn (được định nghĩa bởi các tệp JAR hoặc Python được truyền cho SparkContext) đến các executors. Cuối cùng, SparkContext gửi các task đến các executors để chạy.
+Cụ thể, để chạy trên một cluster, [[SparkContext]] có thể kết nối với nhiều loại _cluster managers_ (hoặc standalone cluster manager của Spark, YARN hoặc Kubernetes), các cluster managers này sẽ phân bổ tài nguyên cho các applications. Sau khi kết nối, Spark sẽ lấy các _executors_ trên các nodes trong cluster, đó là các tiến trình chạy các computations và lưu trữ dữ liệu cho application của bạn. Tiếp theo, nó gửi application code của bạn (được định nghĩa bởi các tệp JAR hoặc Python được truyền cho [[SparkContext]]) đến các executors. Cuối cùng, [[SparkContext]] gửi các task đến các executors để chạy.
 
 ![[spark_components.png]]
 
@@ -13,7 +13,7 @@ Cụ thể, để chạy trên một cluster, SparkContext có thể kết nối
  
  - Điều này mang lại lợi ích là cô lập các application với nhau, cả về phía scheduling (mỗi driver schedules cho các task của riêng nó) và phía executor (các task từ các ứng dụng khác nhau chạy trong các JVM khác nhau). 
 
- - Tuy nhiên, điều này cũng có nghĩa là dữ liệu không thể được chia sẻ giữa các Spark application khác nhau (các instances của SparkContext) mà không cần ghi vào hệ thống lưu trữ bên ngoài.
+ - Tuy nhiên, điều này cũng có nghĩa là dữ liệu không thể được chia sẻ giữa các Spark application khác nhau (các instances của [[SparkContext]]) mà không cần ghi vào hệ thống lưu trữ bên ngoài.
 
 Spark không phụ thuộc vào cluster manager nào. Miễn là nó có thể có được các tiến trình executor và các tiến trình này có thể giao tiếp với nhau, thì việc chạy Spark tương đối dễ dàng ngay cả trên một cluster manager cũng hỗ trợ các ứng dụng khác (ví dụ: YARN/Kubernetes).
 
@@ -33,7 +33,7 @@ Mỗi driver program đều có web UI, thường là trên cổng 4040, hiển 
 
 ## Job Scheduling
 
-Spark cho phép kiểm soát việc phân bổ tài nguyên cả giữa các application (ở cấp độ cluster manager) và trong nội bộ application (nếu nhiều computations đang diễn ra trên cùng một SparkContext). Phần tổng quan về [[Job Scheduling]] mô tả điều này chi tiết hơn.
+Spark cho phép kiểm soát việc phân bổ tài nguyên cả giữa các application (ở cấp độ cluster manager) và trong nội bộ application (nếu nhiều computations đang diễn ra trên cùng một [[SparkContext]]). Phần tổng quan về [[Job Scheduling]] mô tả điều này chi tiết hơn.
 
 ## Glossary
 

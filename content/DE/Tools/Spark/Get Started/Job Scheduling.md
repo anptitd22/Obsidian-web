@@ -4,7 +4,7 @@
     
     1. **Between Applications (Giữa các Application):** Do Cluster Manager (YARN, K8s, Standalone, Mesos) quản lý.
         
-    2. **Within Application (Trong cùng 1 Application):** Do SparkContext quản lý (khi gửi nhiều Action/Job từ các luồng khác nhau).
+    2. **Within Application (Trong cùng 1 Application):** Do [[SparkContext]] quản lý (khi gửi nhiều Action/Job từ các luồng khác nhau).
 
 ## 2. SCHEDULING ACROSS APPLICATIONS
 

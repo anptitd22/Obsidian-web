@@ -1,0 +1,1 @@
+Chương trình điều khiển chạy hàm `main` của ứng dụng và phát lệnh thực thi các thao tác song song trên cụm (cluster).
