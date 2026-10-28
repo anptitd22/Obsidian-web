@@ -1,33 +1,115 @@
 ## 1. Khái niệm cốt lõi (Core Concepts)
 
 - **Resilient Distributed Dataset (RDD)**:
-    - Là trừu tượng chính trong Spark ở high level, đại diện cho tập hợp dữ liệu phân tán trên các node của cụm, cho phép xử lý song song.
+    - Là trừu tượng chính trong Spark ở low level, đại diện cho tập hợp dữ liệu (có hoặc không có cấu trúc) phân tán trên các node của cụm, cho phép xử lý song song.
     - Có khả năng **tự động khôi phục khi lỗi** (fault-tolerant).
     - Có thể được **lưu tạm (persist/cache)** trong bộ nhớ để tái sử dụng hiệu quả giữa các operator.
 
 ## 2. Khởi tạo & Tạo RDD (Initialization & Creation)
 
-### A. SparkContext
+### A. Khởi tạo SparkContext hoặc SparkSession
 
-- Mọi Spark application đều cần khởi tạo đối tượng [[SparkContext]] (thông qua `SparkConf`) để kết nối với cụm.
+- Mọi Spark application đều cần khởi tạo đối tượng [[SparkContext]] (thông qua `SparkConf`) để kết nối với cụm hoặc [[SparkSession]].
+
+```python
+from pyspark.sql import SparkSession 
+
+# 1. Khởi tạo SparkSession 
+spark = ( SparkSession.builder.appName("TestFilePartition") .master("local[*]") 
+.getOrCreate() 
+) 
+
+sc = spark.sparkContext
+```
 
 - Trong Spark Shell (`bin/pyspark` hoặc `bin/spark-shell`), đối tượng `sc` đã được khởi tạo sẵn.
 
 ### B. Hai cách tạo RDD
 
 1. **Parallelized Collections (Tập hợp song song)**:
-    - Tạo bằng cách gọi `sc.parallelize(collection)` trên một tập hợp có sẵn trong [[Driver Program]].
-    - **Partitions (Phân đoạn)**: Xác định số lượng công việc chạy song song (thường chọn 2–4 partitions cho mỗi CPU).
+
+- Tạo bằng cách gọi `sc.parallelize(collection)` trên một tập hợp có sẵn trong [[Driver Program]].
+
+```python
+# Tạo 3 RDD độc lập 
+rdd1 = sc.parallelize([1, 2, 3], 2) 
+rdd2 = sc.parallelize(["A", "B", "C", "D"], 4) 
+rdd3 = sc.parallelize([10, 20], 1) 
+
+print("RDD 1:", rdd1.collect(), "| Số Partitions:", rdd1.getNumPartitions()) 
+print("RDD 2:", rdd2.collect(), "| Số Partitions:", rdd2.getNumPartitions()) 
+print("RDD 3:", rdd3.collect(), "| Số Partitions:", rdd3.getNumPartitions())
+```
+
+- Hoặc tạo bằng cách transform từ RDD khác
+
+```python
+array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+# RDD ban đầu (RDD 1)
+rdd_goc = sc.parallelize(array, 4)
+
+# Nhân đôi từng phần tử -> Tạo ra RDD mới (RDD 2)
+rdd_nhan_doi = rdd_goc.map(lambda x: x * 2)
+
+# Lọc các số lớn hơn 10 -> Tạo ra RDD mới (RDD 3)
+rdd_loc = rdd_nhan_doi.filter(lambda x: x > 10)
+
+# Tăng số Partitions lên 8 -> Tạo ra RDD mới (RDD 4)
+rdd_chia_lai = rdd_loc.repartition(8)
+
+# --- XEM KẾT QUẢ CỦA TỪNG RDD ---
+print("--- RDD 1 (Gốc) ---")
+print("Data:", rdd_goc.collect())
+
+print("\n--- RDD 2 (Map x2) ---")
+print("Data:", rdd_nhan_doi.collect())
+
+print("\n--- RDD 3 (Filter > 10) ---")
+print("Data:", rdd_loc.collect())
+
+print("\n--- RDD 4 (Repartition 8) ---")
+print("Partitions:", rdd_chia_lai.getNumPartitions())
+print("Phân bố:", rdd_chia_lai.glom().collect())
+```
+
+```console
+--- RDD 3 (Filter > 10) ---
+
+Data: [12, 14, 16, 18, 20, 22, 24]
+
+Partitions: 4
+# Lệch data do filter
+Phân bố: [[], [12], [14, 16, 18], [20, 22, 24]]
+
+
+--- RDD 4 (Repartition 8) ---
+
+Partitions: 8
+
+Phân bố: [[14, 16, 18], [], [12], [], [], [], [20, 22, 24], []
+```
+
+- **Partitions (Phân đoạn)**: Xác định số lượng công việc chạy song song (thường chọn 2–4 partitions cho mỗi CPU).
+
 2. **External Datasets (Tập dữ liệu ngoài)**:
     - Đọc từ tệp tin qua `sc.textFile("path")` (hỗ trợ đường dẫn local, `hdfs://`, `s3a://`, thư mục, tệp nén `.gz` hoặc wildcard).
     - `wholeTextFiles`: Đọc thư mục chứa nhiều tệp nhỏ, trả về cặp `(filename, content)`.
     - Các định dạng khác: `sequenceFile`, `hadoopRDD` / `newAPIHadoopRDD`, `objectFile`.
+
+```python
+rdd_txt = sc.textFile(file_path)
+```
+
+>Thường thì đọc các 1 file spark mặc định là 2 paritition
 
 ## 3. Thao tác trên RDD (RDD Operations)
 
 ### A. Transformations (Phép biến đổi)
 
 - **Đặc tính**: **Lazy Evaluation (Tính toán lười biếng)** — Spark không tính toán kết quả ngay mà chỉ ghi lại chuỗi biến đổi. Việc tính toán chỉ thực sự diễn ra khi một **Action** được gọi.
+
+	- Điều này giúp cho [[Driver Program]] có thể lên được một plan được tự động tối ưu trước khi gửi sang spark cluster
 
 - **Các Transformation phổ biến**:
     - `map(func)`: Áp dụng hàm lên từng phần tử.
@@ -69,7 +151,16 @@
 
 ## 5. Lưu trữ & Lưu tạm RDD (Persistence / Caching)
 
-- **Công dụng**: Giữ lại các partition đã tính toán trong bộ nhớ/đĩa để tái sử dụng ở các Action sau, giúp tăng tốc độ đáng kể (thường hơn 10 lần).
+- **Công dụng**: Giữ lại các partition của RDD đã tính toán trong bộ nhớ/đĩa để tái sử dụng ở các Action sau, giúp tăng tốc độ đáng kể (thường hơn 10 lần).
+
+```python
+# Lưu RDD A vào RAM sau khi tạo 
+rdd_a = sc.parallelize([1, 2, 3, 4, 5, 6]).cache() 
+
+# Lúc này cả RDD B và RDD C đều lấy chung dữ liệu đã cache của RDD A 
+rdd_b = rdd_a.map(lambda x: x * 10) 
+rdd_c = rdd_a.filter(lambda x: x % 2 == 0)
+```
 
 - **Cơ chế khôi phục**: Nếu một partition bị mất, Spark sẽ tự động tính toán lại dựa trên chuỗi transformation ban đầu.
 

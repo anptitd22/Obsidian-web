@@ -1,6 +1,6 @@
 ## 1. Khái niệm cốt lõi (Core Concepts)
 
-- **Spark SQL**: Là một module của Spark chuyên dùng cho việc xử lý dữ liệu có cấu trúc (structured data processing).
+- **Spark SQL**: Là high level so với RDD,  một module của Spark chuyên dùng cho việc xử lý dữ liệu có cấu trúc (structured data processing).
 
 - **Điểm vượt trội so với RDD API**:
     - Cung cấp cho Spark thông tin chi tiết hơn về **cấu trúc của dữ liệu** và **phép tính toán** đang thực thi.

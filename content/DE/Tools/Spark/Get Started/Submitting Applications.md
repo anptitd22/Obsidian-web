@@ -23,7 +23,6 @@
 
 ### A. Cú pháp chuẩn
 
-
 ```bash
 ./bin/spark-submit \
   --class <main-class> \

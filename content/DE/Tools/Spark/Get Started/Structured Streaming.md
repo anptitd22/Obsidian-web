@@ -26,6 +26,9 @@
             
         - Cam kết chịu lỗi: **At-Least-Once**.
 
+>Khi kết hợp với kafka, spark streaming sẽ tự quản lí checkpoint offset trên topic thay vì tạo consumer group để quản lí.
+
+
 ## 2. QUICK EXAMPLE - STREAMING WORD COUNT
 
 ### A. Khởi tạo SparkSession
