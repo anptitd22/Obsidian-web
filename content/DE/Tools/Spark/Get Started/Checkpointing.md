@@ -8,6 +8,8 @@ description: Learn how checkpoint() works, why long execution plans become expen
 tags:
   - Spark
 ---
+Checkpointing saves an intermediate result and truncates its previous lineage, reducing dependency-chain complexity and avoiding the need to recompute the entire upstream chain for subsequent operations.
+
 Learn how `checkpoint()` works, why long execution plans become expensive, and when reliable or local checkpointing makes sense in production PySpark applications.
 
 ### Introduction: What Happens When Your Spark Lineage Becomes Too Long?

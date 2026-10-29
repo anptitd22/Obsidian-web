@@ -1,3 +1,9 @@
+## 1. What is UDF ?
+
+UDF là viết tắt của User-Defined Function (Hàm do người dùng định nghĩa).
+
+UDF cho phép bạn định nghĩa logic tùy chỉnh mà Spark có thể áp dụng cho các cột của DataFrame.
+
 ```
 UDF
 │
@@ -25,12 +31,6 @@ UDF
 └── Production rule
       └── Prefer Spark-native expressions
 ```
-
-## 1. What is UDF ?
-
-UDF là viết tắt của User-Defined Function (Hàm do người dùng định nghĩa).
-
-UDF cho phép bạn định nghĩa logic tùy chỉnh mà Spark có thể áp dụng cho các cột của DataFrame.
 
 Ví dụ:
 
