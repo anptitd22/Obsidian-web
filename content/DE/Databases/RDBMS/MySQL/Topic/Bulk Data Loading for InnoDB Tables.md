@@ -69,5 +69,5 @@ ALTER INSTANCE ENABLE INNODB REDO_LOG;
 Liên quan:
 - [[Buffer Pool]]
 - [[Glossary]]
-- [[Log]]
+- [[DE/Databases/RDBMS/MySQL/Log]]
 - [[DE/Databases/RDBMS/MySQL/Indexes]]

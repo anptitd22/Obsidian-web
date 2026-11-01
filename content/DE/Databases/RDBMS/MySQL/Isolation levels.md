@@ -15,4 +15,4 @@ tags:
 
 Liên quan:
 - [[DE/Databases/RDBMS/Isolation levels|Isolation levels]]
-- [[Log]]
+- [[DE/Databases/RDBMS/MySQL/Log]]

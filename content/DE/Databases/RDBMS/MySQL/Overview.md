@@ -8,7 +8,7 @@ Cung cấp nhiều cơ chế [[Backup & Recovery]]
 
 Có thể phân bố dữ liệu theo [[Partition]]
 
-Có nhiều loại log trong [[Log]]
+Có nhiều loại log trong [[DE/Databases/RDBMS/MySQL/Log]]
 
 Cung cấp nhiều [[Storage Engine]]
 
