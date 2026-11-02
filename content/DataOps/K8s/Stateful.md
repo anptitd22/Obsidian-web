@@ -1,0 +1,1 @@
+**StatefulSet:** Đối tượng đặc biệt để quản lý các Pod có trạng thái. Mỗi Pod giữ được danh tính riêng và liên kết với volume riêng biệt. Hỗ trợ triển khai (deployment) và xóa (deletion) theo thứ tự.
