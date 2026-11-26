@@ -5,3 +5,7 @@
 - Các node replication cũng sẽ chung 1 service và service sẽ đóng là một cân bằng tải nó sẽ bắt tín hiệu và chuyển đến node ít bận rộn hơn
 
 ![[Pasted image 20261103003458.png]]
+
+### Headless Service
+
+![[Pasted image 20261108004050.png]]

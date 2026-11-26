@@ -12,3 +12,6 @@ Kubernetes là một nền tảng mã nguồn mở, có tính di động và kh�
 - Khả năng phục hồi (disaster recovery - backup and restore)
 
 Các lệnh cơ bản: kubectl apply, kubectl get pods, kubectl scale, kubectl logs,… giúp bạn tương tác với cluster.
+
+[[DataOps/K8s/Architecture|Architecture]]
+
